@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class MyArrayListTest {
     @Test
     public void size()
@@ -39,5 +42,23 @@ public class MyArrayListTest {
         int size = list.size();
         // Assert
         Assertions.assertEquals(1100, size);
+    }
+
+    @Test
+    public void languageTest(){
+        MyArrayList list = new MyArrayList();
+        list.add("A");
+        list.add("B");
+        String concat = "";
+        for(String str : list)
+            concat += str;
+//        Iterator it = list.iterator();
+//        while (it.hasNext())
+//        {
+//            concat += it.next();
+//        }
+
+
+        Assertions.assertEquals(concat,"AB");
     }
 }

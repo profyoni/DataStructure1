@@ -25,7 +25,7 @@ public class MyArrayList implements List<String> {
 
     @Override
     public Iterator<String> iterator() {
-        return null;
+        return new MyIterator();
     }
 
     @Override
@@ -89,11 +89,14 @@ public class MyArrayList implements List<String> {
     @Override
     public void clear() {
 
+        insertionPoint = 0;
     }
 
     @Override
     public String get(int index) {
-        return "";
+        if (index < 0 || index >= size())
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
+        return backingStore[index];
     }
 
     @Override
@@ -119,6 +122,20 @@ public class MyArrayList implements List<String> {
     @Override
     public int lastIndexOf(Object o) {
         return 0;
+    }
+
+    private class MyIterator implements Iterator<String> {
+
+        private int beforeIndex = 0;
+        @Override
+        public boolean hasNext() {
+            return beforeIndex < size();
+        }
+
+        @Override
+        public String next() {
+            return backingStore[beforeIndex++];
+        }
     }
 
     @Override
