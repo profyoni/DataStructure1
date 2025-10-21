@@ -5,24 +5,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MyArrayListTest {
+    private MyArrayList<String> stringList = new MyArrayList<>();
+
     @Test
     public void size()
     {
-        MyArrayList list = new MyArrayList();
-
-        Assertions.assertEquals(0,list.size());
+        Assertions.assertEquals(0,stringList.size());
     }
     @Test
     public void add()
     {
-        // Arrange
-        MyArrayList list = new MyArrayList();
 
         // Act
-        list.add("A");
-        list.add("B");
+        stringList.add("A");
+        stringList.add("B");
 
-        int size = list.size();
+        int size = stringList.size();
         // Assert
         Assertions.assertEquals(2, size);
     }
@@ -30,27 +28,26 @@ public class MyArrayListTest {
     @Test
     public void add11()
     {
-        // Arrange
-        MyArrayList list = new MyArrayList();
-
         // Act
         for (int i = 0; i < 1100; i++)
         {
-            list.add("A" + i);
+            stringList.add("A" + i);
         }
 
-        int size = list.size();
+        int size = stringList.size();
         // Assert
         Assertions.assertEquals(1100, size);
+
+        ArrayList<Integer> al = new ArrayList<>();
+        al.add(5);
     }
 
     @Test
     public void languageTest(){
-        MyArrayList list = new MyArrayList();
-        list.add("A");
-        list.add("B");
+        stringList.add("A");
+        stringList.add("B");
         String concat = "";
-        for(String str : list)
+        for(String str : stringList)
             concat += str;
 //        Iterator it = list.iterator();
 //        while (it.hasNext())
