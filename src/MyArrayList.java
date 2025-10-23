@@ -81,7 +81,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        for (T t : c)
+            add(t);
+        return true; // return false if nothing added
     }
 
     @Override

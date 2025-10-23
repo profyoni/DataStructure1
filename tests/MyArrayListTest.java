@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class MyArrayListTest {
@@ -57,5 +58,17 @@ public class MyArrayListTest {
 
 
         Assertions.assertEquals(concat,"AB");
+    }
+
+    @Test
+    public void addAll(){
+        ArrayList<String> al = new ArrayList<>();
+        al.add("A");
+
+        HashSet<String> s1 = new HashSet<>();
+        s1.add("A");
+
+        stringList.addAll(al);
+        stringList.addAll(s1);
     }
 }
