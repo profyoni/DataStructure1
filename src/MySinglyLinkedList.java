@@ -103,22 +103,28 @@ public class MySinglyLinkedList implements List<String> {
         size = 0;
     }
 
-    @Override
-    public String get(int index) {
+    private Node getNode(int index, boolean inclusive) {
+        checkBounds(index, inclusive);
         int currentIndex = 0;
         Node current = head;
         while (currentIndex++ < index)
             current = current.next;
-        return current.data;
+        return current;
+    }
+
+    private void checkBounds(int index, boolean inclusive) {
+        if (index < 0 || index > size || (!inclusive && index == size))
+            throw new IndexOutOfBoundsException(String.format("Index: %d, Size: %d", index, size));
+    }
+
+    @Override
+    public String get(int index) {
+        return getNode(index, false).data;
     }
 
     @Override
     public String set(int index, String element) {
-        int currentIndex = 0;
-
-        Node current = head;
-        for ( ; currentIndex++ < index; )
-            current = current.next;
+        Node current = getNode(index, false);
 
         String oldVal = current.data;
         current.data = element;
@@ -127,11 +133,25 @@ public class MySinglyLinkedList implements List<String> {
 
     @Override
     public void add(int index, String element) {
+        Node newNode = new Node();
+        newNode.data = element;
+        size++;
+        if (index == 0)
+        {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        Node prev = getNode(index - 1, true);
+
+        newNode.next = prev.next;
+        prev.next = newNode;
 
     }
 
     @Override
     public String remove(int index) {
+
         return "";
     }
 
