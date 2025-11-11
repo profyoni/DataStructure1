@@ -1,16 +1,15 @@
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
-class Node{
-    String data;
-    Node next;
-}
+
 
 public class MySinglyLinkedList implements List<String> {
 
-    private Node head;
+    private static class Node{
+        String data;
+        Node next;
+    }
+
+    private Node head = new Node(); // dummy node
     private int size;
 
     @Override
@@ -25,14 +24,33 @@ public class MySinglyLinkedList implements List<String> {
 
     @Override
     public boolean contains(Object o) {
+        for( String s : this)
+        {
+            if(Objects.equals(s,o))
+                return true;
+        }
         return false;
     }
 
     @Override
     public Iterator<String> iterator() {
-        return null;
+        return new MyLLIterator();
     }
 
+    private class MyLLIterator implements Iterator<String> {
+        private Node current = MySinglyLinkedList.this.head;
+
+        @Override
+        public boolean hasNext() {
+            return this.current.next != null;
+        }
+
+        @Override
+        public String next() {
+            this.current = current.next;
+            return this.current.data;
+        }
+    }
     @Override
     public Object[] toArray() {
         return new Object[0];
@@ -157,6 +175,13 @@ public class MySinglyLinkedList implements List<String> {
 
     @Override
     public int indexOf(Object o) {
+        int i=0;
+        for (String s : this)
+        {
+            if (Objects.equals(s,o))
+                return i;
+            i++;
+        }
         return 0;
     }
 

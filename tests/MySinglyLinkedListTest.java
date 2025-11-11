@@ -20,12 +20,22 @@ class MySinglyLinkedListTest {
 
     @Test
     void add() {
-
         list.add("a");
         list.add("b");
         list.add("c");
 
         assertEquals(3, list.size());
+    }
+    @Test
+    void add2() {
+        list.add(0,"a");
+        list.add(1,"b");
+        list.add(1,"c");
+
+        assertEquals(3, list.size());
+        assertEquals("a", list.get(0));
+        assertEquals("c", list.get(1));
+        assertEquals("b", list.get(2));
     }
 
     @Test

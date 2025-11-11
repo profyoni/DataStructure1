@@ -1,6 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        MyArrayList mal = new MyArrayList();
+        Main m = new Main();
+        m.foo();
+    }
+
+    void foo(){
+        System.out.println("Hello World");
     }
 }
 
