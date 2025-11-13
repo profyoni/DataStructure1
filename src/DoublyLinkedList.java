@@ -8,25 +8,30 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-    class Node2{
-        String data;
-        Node2 prev, next;
 
-        public Node2(String d, Node2 p, Node2 n){
-            data = d;
-            prev = p;
-            next = n;
-        }
-    }
 
     public class DoublyLinkedList implements List<String> {
+        private static class Node {
+            String data;
+            Node prev, next;
+
+            public Node() {
+            }
+
+            public Node(String d, Node p, Node n) {
+                data = d;
+                prev = p;
+                next = n;
+            }
+        }
 
         public DoublyLinkedList() {
-            head = new Node2(null,null,null);
-            tail = new Node2(null, head, null);
+            head = new Node(null, null, null);
+            tail = new Node(null, head, null);
             head.next = tail;
         }
-        private Node2 head, tail;
+
+        private Node head, tail;
         private int size;
 
         @Override
@@ -66,8 +71,7 @@ import java.util.ListIterator;
             size++;
             if (head == null) { // first elt
                 head = newNode;
-            }
-            else {
+            } else {
                 Node tail = getTail();
                 tail.next = newNode;
             }
@@ -152,8 +156,7 @@ import java.util.ListIterator;
             Node newNode = new Node();
             newNode.data = element;
             size++;
-            if (index == 0)
-            {
+            if (index == 0) {
                 newNode.next = head;
                 head = newNode;
                 return;
@@ -197,4 +200,3 @@ import java.util.ListIterator;
         }
     }
 
-}
