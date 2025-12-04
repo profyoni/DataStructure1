@@ -3,8 +3,46 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class LanguageTest {
+
+    public static class Person2 {
+        public String name;
+        public int id;
+        public boolean isFemale;
+
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, id, isFemale, "");
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person2 person2 = (Person2) o;
+            return id == person2.id && isFemale == person2.isFemale && Objects.equals(name, person2.name);
+        }
+    }
+
+    @Test
+    public void testBadHashCode(){
+        Person2 p1 = new Person2();
+        Person2 p2 = new Person2();
+        p1.name = "Bob";
+        p2.name = "Bob";
+
+        Set<LanguageTest.Person2> set = new HashSet<>();
+        set.add(p1);
+
+        Assertions.assertTrue(p1.equals(p2));
+        boolean containsBob = set.contains(p2);
+        Assertions.assertTrue(containsBob);
+
+    }
     @Test
     public void t1(){
         int x = 5;

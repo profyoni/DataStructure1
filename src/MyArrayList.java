@@ -88,7 +88,32 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        if (c == null || c.isEmpty())
+            return false;
+        if (index <=0 || index > insertionPoint)
+            throw new IndexOutOfBoundsException(String.format("Index: %d, Size: %d", index, insertionPoint));
+        for (T t : c){
+            add(index++, t); // O(n^2)
+        }
+        return true;
+    }
+
+
+
+    public boolean addAllEfficient(int index, Collection<? extends T> c) {
+        if (c == null || c.isEmpty())
+            return false;
+        if (index <=0 || index > insertionPoint)
+            throw new IndexOutOfBoundsException(String.format("Index: %d, Size: %d", index, insertionPoint));
+        // growBs ?
+        int minBSSize = c.size() + this.size();
+        while ( minBSSize > backingStore.length)
+            growBackingStore();
+        System.arraycopy(backingStore, index, backingStore, index + c.size(), size() - index + 1);
+        for (T t : c){
+            backingStore[index++] = t;
+        }
+        return true;
     }
 
     @Override
