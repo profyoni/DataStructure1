@@ -16,8 +16,17 @@ public class LanguageTest {
 
         @Override
         public int hashCode() {
-            return Objects.hash(name, id, isFemale, "");
+            int hc = id ;
+            hc = hc * 13;
+            hc += (name != null ? name.hashCode() : 0);
+            hc *= 13;
+            hc += (isFemale ? 1 : 0) ;
+            hc *= 13;
+            return hc;
+//        helper function with similar methodology    return Objects.hash(name, id, isFemale);
         }
+
+
 
         @Override
         public boolean equals(Object o) {
