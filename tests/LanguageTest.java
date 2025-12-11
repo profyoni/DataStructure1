@@ -16,6 +16,7 @@ public class LanguageTest {
 
         @Override
         public int hashCode() {
+            HashSet s;
             int hc = id ;
             hc = hc * 13;
             hc += (name != null ? name.hashCode() : 0);
