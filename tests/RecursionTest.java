@@ -28,4 +28,12 @@ void palindrome() {
         assertEquals(9, Recursion.add(5,4));
         assertEquals(99999999, Recursion.add(55555555,44444444));
     }
+
+
+    @Test
+    void fib() {
+        assertEquals(5, Recursion.fib(5));
+        assertEquals(55, Recursion.fib(10));
+        assertEquals(1548008755920L, Recursion.fib(60));
+    }
 }
