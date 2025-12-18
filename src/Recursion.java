@@ -26,4 +26,34 @@ public class Recursion {
                 map.put(n, ret);
                 return ret;
     }
+    public static void main(String[] args) {
+        foo();
+
+    }
+    public static void foo() {
+        int[] a = new int[1_000_000];
+        a[555_555] = 15;
+        a[155_555] = 1;
+        a[8] = 150;
+        throw new RuntimeException();
+        //max(a);
+    }
+
+    public static int max(int[] a) {
+        return max(a, 0, a.length);
+
+    }
+
+    ///
+    /// start - first index
+    /// end - last index (exclusive)
+    private static int  max(int[] a, int start, int end) {
+        System.out.println(start +",\t" + end);
+        if (end - start == 1) // Base
+            return a[start];
+        int endPoint = start + (end-start)/2;
+        int max1 = max(a, start, endPoint );
+        int max2 = max(a, endPoint, end);
+        return max1 > max2 ? max1 : max2;
+    }
 }

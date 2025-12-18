@@ -36,4 +36,13 @@ void palindrome() {
         assertEquals(55, Recursion.fib(10));
         assertEquals(1548008755920L, Recursion.fib(60));
     }
+    @Test
+    void max(){
+        int[] a = new int[1_000_000];
+        a[555_555] = 15;
+        a[155_555] = 1;
+        a[8] = 150;
+
+        assertEquals(150, Recursion.max(a));
+    }
 }
